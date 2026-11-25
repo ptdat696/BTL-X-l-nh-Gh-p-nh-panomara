@@ -58,9 +58,8 @@ def _find_order(images, keypoints, pairs):
 
 
 def stitch(images, max_width=700, max_features=900):
-    """Stitch 2-4 BGR images. All core image-processing steps are self-coded."""
-    if not 2 <= len(images) <= 4:
-        raise ValueError('Hãy chọn từ 2 đến 4 ảnh.')
+    if not 2 <= len(images) <= 10:
+        raise ValueError('Hãy chọn tối đa 10 ảnh.')
     start = perf_counter()
     small = []
     for image in images:

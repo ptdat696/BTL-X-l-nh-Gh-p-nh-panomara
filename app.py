@@ -9,15 +9,15 @@ from src.panorama import stitch
 st.set_page_config(page_title='Panorama', layout='wide')
 st.title('Ghép ảnh Panorama')
 
-files = st.file_uploader('Chọn 2–4 ảnh', type=['png', 'jpg', 'jpeg'],
+files = st.file_uploader('Chọn ảnh', type=['png', 'jpg', 'jpeg'],
                          accept_multiple_files=True)
 
 data = [(f.name, f.getvalue()) for f in files]
 key = tuple((name, hashlib.md5(raw).hexdigest()) for name, raw in data)
 
 if st.button('Ghép ảnh', type='primary'):
-    if not 2 <= len(data) <= 4:
-        st.error('Hãy chọn từ 2 đến 4 ảnh.')
+    if not 2 <= len(data) <= 10:
+        st.error('Hãy chọn ảnh, tối đa 10 ảnh.')
     else:
         try:
             images = [cv2.imdecode(np.frombuffer(raw, np.uint8), cv2.IMREAD_COLOR)
